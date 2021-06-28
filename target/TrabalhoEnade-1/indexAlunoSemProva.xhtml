@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    template="./WEB-INF/TemplateAlunoSemProva.xhtml"
+                    xmlns:p="http://primefaces.org/ui">
+
+        <ui:define name="content">
+            <center>
+                <h1>Bem-vindo "#{LoginController.login.getLogin()}" ao sistema do Simulado ENADE</h1>
+                <p:graphicImage name="imagens/logo.png" width="30%"/>
+                <h:form>
+                    <p:commandButton value="Deslogar"
+                                     icon="ui-icon-star" action="#{LoginController.logout}" ajax="false">
+                    </p:commandButton>
+                </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+</html>

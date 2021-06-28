@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    template="./WEB-INF/TemplateAluno.xhtml"
+                    xmlns:p="http://primefaces.org/ui"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html"
+                    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:define name="content">
+
+            <br/>
+
+            <h2>Prova</h2>
+
+            <br/>
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable var="valor" value="#{questaoController.questoes}"
+                             id="tabelaTQ" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" rowsPerPageTemplate="5,10,25,50,100,9999" editable="true">
+
+                    <p:column headerText="Titulo Questao">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.descricaoQuestao}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputdesc" value="#{valor.descricaoQuestao}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Alternativa A">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.alternativaA}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputA" value="#{valor.alternativaA}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Alternativa B">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.alternativaB}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputB" value="#{valor.alternativaB}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Alternativa C">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.alternativaC}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputC" value="#{valor.alternativaC}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Alternativa D">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.alternativaD}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputD" value="#{valor.alternativaD}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Alternativa E">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.alternativaE}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputE" value="#{valor.alternativaE}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                </p:dataTable>
+                
+            </h:form>
+            
+            <br/>
+            
+            <h:form>
+                <p:commandButton icon="ui-icon-plus" value="Enviar" onclick="PF('record').show();" />  
+            </h:form>
+            
+            <p:dialog header="Enviar" widgetVar="record" modal="true">
+                <h:form>
+                    <p:panelGrid id="panelRecord" columns="2">
+                           1:
+                           <p:selectOneMenu id="resp1">
+                                <f:selectItem itemLabel="Selecione" itemValue=""/>
+                                <f:selectItem itemLabel="Alternativa A" itemValue="AlternativaA"/>
+                                <f:selectItem itemLabel="Alternativa B" itemValue="AlternativaB"/>
+                                <f:selectItem itemLabel="Alternativa C" itemValue="AlternativaC"/>
+                                <f:selectItem itemLabel="Alternativa D" itemValue="AlternativaD"/>
+                                <f:selectItem itemLabel="Alternativa E" itemValue="AlternativaE"/>
+                           </p:selectOneMenu>   
+                           2:
+                           <p:selectOneMenu id="resp2">
+                                <f:selectItem itemLabel="Selecione" itemValue=""/>
+                                <f:selectItem itemLabel="Alternativa A" itemValue="AlternativaA"/>
+                                <f:selectItem itemLabel="Alternativa B" itemValue="AlternativaB"/>
+                                <f:selectItem itemLabel="Alternativa C" itemValue="AlternativaC"/>
+                                <f:selectItem itemLabel="Alternativa D" itemValue="AlternativaD"/>
+                                <f:selectItem itemLabel="Alternativa E" itemValue="AlternativaE"/>
+                           </p:selectOneMenu> 
+                           3:
+                           <p:selectOneMenu id="resp3">
+                                <f:selectItem itemLabel="Selecione" itemValue=""/>
+                                <f:selectItem itemLabel="Alternativa A" itemValue="AlternativaA"/>
+                                <f:selectItem itemLabel="Alternativa B" itemValue="AlternativaB"/>
+                                <f:selectItem itemLabel="Alternativa C" itemValue="AlternativaC"/>
+                                <f:selectItem itemLabel="Alternativa D" itemValue="AlternativaD"/>
+                                <f:selectItem itemLabel="Alternativa E" itemValue="AlternativaE"/>
+                           </p:selectOneMenu>
+                           4:
+                           <p:selectOneMenu id="resp4">
+                                <f:selectItem itemLabel="Selecione" itemValue=""/>
+                                <f:selectItem itemLabel="Alternativa A" itemValue="AlternativaA"/>
+                                <f:selectItem itemLabel="Alternativa B" itemValue="AlternativaB"/>
+                                <f:selectItem itemLabel="Alternativa C" itemValue="AlternativaC"/>
+                                <f:selectItem itemLabel="Alternativa D" itemValue="AlternativaD"/>
+                                <f:selectItem itemLabel="Alternativa E" itemValue="AlternativaE"/>
+                           </p:selectOneMenu> 
+                    </p:panelGrid>
+
+                    <br/>
+                    <p:commandButton value="Enviar"  
+                                     actionListener="#{questaoController.gravar}" onclick="record.hide()" alt="Record"/> 
+                </h:form>
+            </p:dialog>
+            
+        </ui:define>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,5 @@
+sonar.projectKey=org.sonarqube:sonarqube-scanner            #Key
+sonar.projectName=Example of SonarQube Scanner Usage #The name here will be displayed on the web
+sonar.projectVersion=1.0 # version, will also be displayed on the web
+sonar.sources=src #package storage path
+sonar.sourceEncoding=UTF-8 

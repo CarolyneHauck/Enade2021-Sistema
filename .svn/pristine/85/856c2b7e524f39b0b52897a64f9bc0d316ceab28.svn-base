@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Bem-vindo ao sistema do Simulado ENADE</title>         
+    </h:head>
+    <h:body>
+        <center>
+            <p:dialog visible="true" width="400" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
+                <h:panelGrid style="margin: 0 auto;"><h:outputText styleClass="fa fa-lock fa-5x"/></h:panelGrid>
+                <p:graphicImage name="imagens/logo.png" width="35%" />
+
+
+                <h:form>
+                    <p:messages id="messages" />
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="nomeUsuario" value="Nome
+                                       Usuário:" />
+                        <p:inputText id="nomeUsuario"
+                                     value="#{LoginMB.usuario.nomeUsuario}" />
+
+                        <p:outputLabel for="senha" value="Senha:" />
+                        <p:password id="senha" value="#{LoginMB.usuario.senhaUsuario}" />
+
+                        <p:commandButton value="Enviar"
+                                         icon="ui-icon-star" action="#{LoginMB.envia}" ajax="false">
+                        </p:commandButton>
+
+                    </p:panelGrid>
+                </h:form>
+
+                <h:form>
+                    <p:commandButton icon="ui-icon-plus" value="Novo Aluno" onclick="PF('record').show();" />  
+                </h:form>
+            </p:dialog>
+            
+            <p:dialog header="Novo" widgetVar="record" modal="true">
+                <h:form>
+                    <p:panelGrid id="panelRecord" columns="2">
+                        Nome Usuario:
+                        <p:inputText id="desc" value="#{usuarioController.usuario.nomeUsuario}" />
+                        Email Usuario:
+                        <p:inputText id="alta" value="#{usuarioController.usuario.emailUsuario}" />
+                        Senha Usuario
+                        <p:inputText id="altb" value="#{usuarioController.usuario.senhaUsuario}" />
+                    </p:panelGrid>
+
+                    <br/>
+                    <p:commandButton value="Salvar"  
+                                     actionListener="#{usuarioController.gravar}" onclick="record.hide()" alt="Record"/> 
+                </h:form>
+            </p:dialog>
+        </center>
+    </h:body>
+</html>

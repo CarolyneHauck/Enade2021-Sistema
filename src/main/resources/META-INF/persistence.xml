@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ENADE" transaction-type="RESOURCE_LOCAL">
+    <class>enade.model.Resultado</class>
+    <class>enade.model.TipoQuestao</class>
+    <class>enade.model.Usuario</class>
+    <class>enade.model.Prova</class>
+    <class>enade.model.TipoUsuario</class>
+    <class>enade.model.Questao</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/enade?autoReconnect=true&amp;useSSL=false"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Putemin050!"/>
+    </properties>
+  </persistence-unit>
+</persistence>

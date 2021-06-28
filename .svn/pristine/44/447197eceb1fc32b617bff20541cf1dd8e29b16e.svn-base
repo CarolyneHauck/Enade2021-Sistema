@@ -1,0 +1,28 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <header>
+        <h1>Simulado ENADE</h1>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Início" icon="ui-icon-home" url="index.xhtml" />
+
+                <p:submenu label="Gerenciar" icon="ui-icon-gear">
+                    <p:menuitem value="Usuários" icon="ui-icon-person" url="usuarios.xhtml"/>
+                    <p:menuitem value="Tipos de Questões" icon="ui-icon-bookmark" url="tipoQuestao.xhtml"/>
+                    <p:menuitem value="Questões" icon="ui-icon-folder-open" url="questoes.xhtml"/>
+                    <p:menuitem value="Prova" icon="ui-icon-document" url="prova.xhtml"/>
+                    <p:menuitem value="Questões das Provas" icon="ui-icon-document" url="questoesProvas.xhtml"/>
+                </p:submenu>
+                <p:submenu label="Relatórios" icon="ui-icon-print">
+                    <p:menuitem value="Consulta por Usuário" icon="ui-icon-print" url="consultaUsuario.xhtml"/>
+                    <p:menuitem value="Consulta por Prova" icon="ui-icon-print" url="consultaProva.xhtml"/>
+                    <p:menuitem value="Relatório" icon="ui-icon-print" url="relatorio.xhtml"/>
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </header>
+</ui:composition>

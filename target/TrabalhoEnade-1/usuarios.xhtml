@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    template="./WEB-INF/Template.xhtml"
+                    xmlns:p="http://primefaces.org/ui"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html"
+                    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:define name="content">
+
+            <br/>
+
+            <h2>Usuario</h2>
+
+            <br/>
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable var="valor" value="#{usuarioController.usuarios}"
+                             id="tabelaTQ" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" rowsPerPageTemplate="5,10,25,50,100,9999" editable="true">
+
+                    <p:ajax event="rowEdit" listener="#{usuarioController.onRowEdit}" update=":form:msgs" />
+                    <p:ajax event="rowEditCancel" listener="#{usuarioController.onRowCancel}" update=":form:msgs" />
+
+                    <p:column headerText="Código" sortBy="#{valor.idUsuario}" filterBy="#{valor.idUsuario}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.idUsuario}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputid" value="#{valor.idUsuario}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nome" sortBy="#{valor.nomeUsuario}" filterBy="#{valor.nomeUsuario}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.nomeUsuario}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputdesc" value="#{valor.nomeUsuario}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Email Usuario" sortBy="#{valor.emailUsuario}" filterBy="#{valor.emailUsuario}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.emailUsuario}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputA" value="#{valor.emailUsuario}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Senha Usuario" sortBy="#{valor.senhaUsuario}" filterBy="#{valor.senhaUsuario}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valor.senhaUsuario}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInputB" value="#{valor.senhaUsuario}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Tipo Usuario" sortBy="#{valor.tipoUsuarioidtipoUsuario.nomeTipoUsuario}" filterBy="#{valor.tipoUsuarioidtipoUsuario.nomeTipoUsuario}">
+                        <h:outputText value="#{valor.tipoUsuarioidtipoUsuario.nomeTipoUsuario}" />
+                    </p:column>
+
+                    <p:column headerText="Opções" exportable="false">
+                        <p:rowEditor id="edit"/>
+
+
+                        <p:commandLink value="Deletar" onclick="PF('remove').show();" class="ui-icon ui-icon-trash"> 
+                            <f:setPropertyActionListener target="#{usuarioController.usuario}"
+                                                         value="#{valor}" />
+                        </p:commandLink> 
+
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <br/>
+
+            <h:form>
+                <p:commandButton icon="ui-icon-plus" value="Novo" onclick="PF('record').show();" />  
+            </h:form>
+
+            <h:form>
+                <div align="center">
+                    <h3>Exportar dados da página</h3>
+
+                    <h:commandLink id="excel">
+                        <p:graphicImage name="imagens/exports/excel1.png" width="24"/>
+                        <p:dataExporter type="xls" target=":form:tabelaTQ" fileName="export"/>
+                    </h:commandLink>
+
+                    <h:commandLink id="xlsx">
+                        <p:graphicImage name="imagens/exports/excel.png" width="24" />
+                        <p:dataExporter type="xls" target=":form:tabelaTQ" fileName="export"/>
+                    </h:commandLink>
+
+                    <h:commandLink id="pdf">
+                        <p:graphicImage name="imagens/exports/pdf.png" width="24"/>
+                        <p:dataExporter type="pdf" target=":form:tabelaTQ" fileName="export" />
+                    </h:commandLink>
+
+                    <h:commandLink id="csv">
+                        <p:graphicImage name="imagens/exports/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target=":form:tabelaTQ" fileName="export" />
+                    </h:commandLink>
+
+                    <h:commandLink id="xml">
+                        <p:graphicImage  name="imagens/exports/xml.png" width="24"/>
+                        <p:dataExporter type="xml" target=":form:tabelaTQ" fileName="export" />
+                    </h:commandLink>
+                </div>
+            </h:form>
+
+            <p:dialog header="Novo" widgetVar="record" modal="true">
+                <h:form>
+                    <p:panelGrid id="panelRecord" columns="2">
+                        Nome Usuario:
+                        <p:inputText id="desc" value="#{usuarioController.usuario.nomeUsuario}" />
+                        Email Usuario:
+                        <p:inputText id="alta" value="#{usuarioController.usuario.emailUsuario}" />
+                        Senha Usuario
+                        <p:inputText id="altb" value="#{usuarioController.usuario.senhaUsuario}" />
+                        Tipo Usuario
+                        <p:selectOneMenu id="resp" value="#{usuarioController.usuario.tipoUsuarioidtipoUsuario}" converter="tipousuarioConverter">
+                            <f:selectItem itemLabel="Selecione" itemValue="" />
+                            <f:selectItems value="#{tipoUsuarioController.tipoUsuarios}" var="respname" itemLabel="#{respname.nomeTipoUsuario}" itemValue="#{respname}" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+
+                    <br/>
+                    <p:commandButton value="Salvar"  
+                                     actionListener="#{usuarioController.gravar}" onclick="record.hide()" alt="Record"/> 
+                </h:form>
+            </p:dialog>
+            
+
+            <p:dialog header="Delete" widgetVar="remove" modal="true"> 
+                <h:form>
+                    Você tem certeza?
+                    <p:commandButton value="Deletar"  
+                                     actionListener="#{usuarioController.remover}" onclick="remove.hide()" alt="Delete" /> 
+                </h:form>
+            </p:dialog>
+
+        </ui:define>
+
+    </ui:composition>
+</html>
